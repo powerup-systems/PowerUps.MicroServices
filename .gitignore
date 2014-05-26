@@ -1,0 +1,13 @@
+*.suo
+_ReSharper*
+_NCrunch*
+*.user
+obj
+bin
+*.vs10x
+*.stackdump
+
+/Deploy
+/Reports
+/Tools/FAKE.Core
+/Tools/NUnit.Runners
