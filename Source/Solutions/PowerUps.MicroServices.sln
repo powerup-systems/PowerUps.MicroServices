@@ -3,8 +3,52 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blocks", "Blocks", "{2F0DBBB8-D06C-49B7-9F16-2FB28B4A6E49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blocks.Core", "..\..\Modules\Blocks\Source\Blocks.Core\Blocks.Core.csproj", "{2821349E-6F6F-4C57-A9D1-E5B96C418C76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blocks.WindowsService", "..\..\Modules\Blocks\Source\Blocks.WindowsService\Blocks.WindowsService.csproj", "{4D7270C7-756F-48C3-A607-52D7B9493209}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blocks.Nancy.Selfhost", "..\..\Modules\Blocks\Source\Blocks.Nancy.Selfhost\Blocks.Nancy.Selfhost.csproj", "{0CFC86EF-4E1A-4FF0-86E5-FEFF2160B129}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerUps.MicroServices.PushoverFacade", "..\Code\PowerUps.MicroServices.PushoverFacade\PowerUps.MicroServices.PushoverFacade.csproj", "{2C886D59-CA1B-4F4F-BB45-762E563E0E4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E98A3766-9697-486D-BAAC-DD7108694D3B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2821349E-6F6F-4C57-A9D1-E5B96C418C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2821349E-6F6F-4C57-A9D1-E5B96C418C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2821349E-6F6F-4C57-A9D1-E5B96C418C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2821349E-6F6F-4C57-A9D1-E5B96C418C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D7270C7-756F-48C3-A607-52D7B9493209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D7270C7-756F-48C3-A607-52D7B9493209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D7270C7-756F-48C3-A607-52D7B9493209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D7270C7-756F-48C3-A607-52D7B9493209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CFC86EF-4E1A-4FF0-86E5-FEFF2160B129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CFC86EF-4E1A-4FF0-86E5-FEFF2160B129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CFC86EF-4E1A-4FF0-86E5-FEFF2160B129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CFC86EF-4E1A-4FF0-86E5-FEFF2160B129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C886D59-CA1B-4F4F-BB45-762E563E0E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C886D59-CA1B-4F4F-BB45-762E563E0E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C886D59-CA1B-4F4F-BB45-762E563E0E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C886D59-CA1B-4F4F-BB45-762E563E0E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2821349E-6F6F-4C57-A9D1-E5B96C418C76} = {2F0DBBB8-D06C-49B7-9F16-2FB28B4A6E49}
+		{4D7270C7-756F-48C3-A607-52D7B9493209} = {2F0DBBB8-D06C-49B7-9F16-2FB28B4A6E49}
+		{0CFC86EF-4E1A-4FF0-86E5-FEFF2160B129} = {2F0DBBB8-D06C-49B7-9F16-2FB28B4A6E49}
 	EndGlobalSection
 EndGlobal
