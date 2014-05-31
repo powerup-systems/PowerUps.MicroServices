@@ -39,6 +39,7 @@ namespace PowerUps.MicroServices.PushoverFacade.AntiCorruption
                     ApiKey = message.apiKey,
                     Message = message.message,
                     UserKey = message.userKey,
+                    Tenant = message.tenant,
                 };
         }
     }

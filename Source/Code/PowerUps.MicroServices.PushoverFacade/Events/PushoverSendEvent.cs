@@ -29,5 +29,6 @@ namespace PowerUps.MicroServices.PushoverFacade.Events
         public string ApiKey { get; set; }
         public string UserKey { get; set; }
         public string Message { get; set; }
+        public string Tenant { get; set; }
     }
 }

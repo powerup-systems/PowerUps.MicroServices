@@ -83,10 +83,11 @@ namespace PowerUps.Test.MicroServices.PushoverFacade.Integration.Jobs
                     {
                         id = Guid.NewGuid(),
                         version = 1,
-                        eventType = eventType,
+                        eventType,
                         apiKey = "",
                         userKey = "",
                         message = "Test",
+                        tenant = "pushoverfacade.test",
                     },
                 exchangeName,
                 new RoutingKey(eventType));
