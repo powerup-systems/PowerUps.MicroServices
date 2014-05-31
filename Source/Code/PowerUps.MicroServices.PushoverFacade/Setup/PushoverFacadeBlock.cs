@@ -20,47 +20,42 @@
  * -----------------------------------------------------------------------------
  */
 
-using System;
 using System.Collections.Generic;
 using Blocks.Core;
-using Blocks.Core.Setup;
-using Blocks.Messaging.Setup;
+using Blocks.Core.Blocks;
+using Blocks.Core.Services;
+using Blocks.Core.Specifications;
+using Blocks.Messaging;
+using Blocks.Messaging.Extensions;
 using Blocks.Nancy.Selfhost;
-using Blocks.Nancy.Selfhost.Setup;
-using Blocks.WindowsService.Setup;
-using PowerUps.MicroServices.PushoverFacade.Setup;
+using Blocks.WindowsService;
+using Blocks.WindowsService.Extensions;
 
-namespace PowerUps.MicroServices.PushoverFacade
+namespace PowerUps.MicroServices.PushoverFacade.Setup
 {
-    class Program
+    public class PushoverFacadeBlock : BlockBase
     {
-        static int Main(string[] args)
+        public override IEnumerable<BlockSpecification> Requirements
         {
-            return SelfhostServiceInitializer.Run<IPushoverFacadeConfiguration>(
-                CreateNancyModuleTypes(),
-                CreateBlocksOptions());
+            get
+            {
+                return new[]
+                    {
+                        new BlockSpecification{PlugIn = typeof(ICoreBlock)},
+                        new BlockSpecification{PlugIn = typeof(IMessagingBlock)}, 
+                        new BlockSpecification{PlugIn = typeof(INancySelfHostBlock)},
+                        new BlockSpecification{PlugIn = typeof(IWinServiceBlock)}, 
+                    };
+            }
         }
 
-        public static IReadOnlyCollection<Type> CreateNancyModuleTypes()
+        public override void Initialize(IServiceRegister register)
         {
-            return new Type[]
-                {
-                };
-        }
-
-        public static BlocksOptions CreateBlocksOptions()
-        {
-            return new BlocksOptions
-                {
-                    Blocks = new List<IBlock>
-                        {
-                            new CoreBlock(),
-                            new MessagingBlock(),
-                            new NancySelfHostBlock(),
-                            new WinServiceBlock(),
-                            new PushoverFacadeBlock(),
-                        }
-                };
+            base.Initialize(register);
+            register.ScanWithDefaultConventions(this);
+            register.RegisterJobs(this);
+            register.RegisterMessageParsers(this);
+            register.RegisterEventSubscribers(this);
         }
     }
 }

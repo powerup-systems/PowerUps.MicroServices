@@ -20,23 +20,40 @@
  * -----------------------------------------------------------------------------
  */
 
-using Blocks.Core.Utilities;
-using Blocks.Nancy.Selfhost;
+using System.Collections.Specialized;
+using System.Net;
+using Blocks.Core;
+using Blocks.Messaging.Events;
+using PowerUps.MicroServices.PushoverFacade.Events;
 
-namespace PowerUps.MicroServices.PushoverFacade
+namespace PowerUps.MicroServices.PushoverFacade.EventHandlers
 {
-    public interface IPushoverFacadeConfiguration : ISelfhostConfiguration
+    public class PushoverSendEventHandler :
+        ISubscribeToEvent<PushoverSendEvent>
     {
-        [DefaultConfiguration("RabbitMqConnectionString")]
-        string RabbitMqConnectionStringName { get; set; }
+        private const string PushOverUrl = "https://api.pushover.net/1/messages.json";
+        private readonly ILogger _logger;
 
-        [DefaultConfiguration("PowerUps.MicroServices")]
-        string RabbitMqExchangeName { get; set; }
+        public PushoverSendEventHandler(
+            ILogger logger)
+        {
+            _logger = logger;
+        }
 
-        [DefaultConfiguration("PowerUps.MicroServices.PushoverFacade")]
-        string RabbitMqQueueName { get; set; }
+        public void When(PushoverSendEvent e)
+        {
+            _logger.InfoFormat("Sending Pushover message '{0}' to user '{1}'", e.Message, e.UserKey);
 
-        [DefaultConfiguration("PowerUps.Notification.Pushover")]
-        string RabbitMqRoutingKey { get; set; }
+            var parameters = new NameValueCollection();
+            parameters["token"] = e.ApiKey;
+            parameters["user"] = e.UserKey;
+            parameters["message"] = e.Message;
+
+            byte[] response = {};
+            using (var webClient = new WebClient())
+            {
+                response = webClient.UploadValues(PushOverUrl, "POST", parameters);
+            }
+        }
     }
 }

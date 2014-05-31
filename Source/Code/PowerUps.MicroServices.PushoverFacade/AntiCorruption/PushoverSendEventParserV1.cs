@@ -20,23 +20,26 @@
  * -----------------------------------------------------------------------------
  */
 
-using Blocks.Core.Utilities;
-using Blocks.Nancy.Selfhost;
+using Blocks.Core.Messaging.Events;
+using Blocks.Messaging.AntiCorruption;
+using PowerUps.MicroServices.PushoverFacade.Events;
 
-namespace PowerUps.MicroServices.PushoverFacade
+namespace PowerUps.MicroServices.PushoverFacade.AntiCorruption
 {
-    public interface IPushoverFacadeConfiguration : ISelfhostConfiguration
+    public class PushoverSendEventParserV1 : MessageParser
     {
-        [DefaultConfiguration("RabbitMqConnectionString")]
-        string RabbitMqConnectionStringName { get; set; }
+        public override string EventType { get { return "powerups.notification.pushover.send"; } }
+        public override int Version { get { return 1; } }
 
-        [DefaultConfiguration("PowerUps.MicroServices")]
-        string RabbitMqExchangeName { get; set; }
-
-        [DefaultConfiguration("PowerUps.MicroServices.PushoverFacade")]
-        string RabbitMqQueueName { get; set; }
-
-        [DefaultConfiguration("PowerUps.Notification.Pushover")]
-        string RabbitMqRoutingKey { get; set; }
+        protected override Event Parse(dynamic message)
+        {
+            return new PushoverSendEvent
+                {
+                    Id = message.id,
+                    ApiKey = message.apiKey,
+                    Message = message.message,
+                    UserKey = message.userKey,
+                };
+        }
     }
 }

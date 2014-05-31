@@ -20,23 +20,30 @@
  * -----------------------------------------------------------------------------
  */
 
-using Blocks.Core.Utilities;
+using System.Collections.Generic;
+using Blocks.Core;
+using Blocks.Core.Blocks;
+using Blocks.Core.Specifications;
+using Blocks.Messaging;
 using Blocks.Nancy.Selfhost;
+using Blocks.WindowsService;
 
-namespace PowerUps.MicroServices.PushoverFacade
+namespace PowerUps.Test.MicroServices.PushoverFacade.Integration
 {
-    public interface IPushoverFacadeConfiguration : ISelfhostConfiguration
+    public class PushoverFacadeIntegrationBlock : BlockBase
     {
-        [DefaultConfiguration("RabbitMqConnectionString")]
-        string RabbitMqConnectionStringName { get; set; }
-
-        [DefaultConfiguration("PowerUps.MicroServices")]
-        string RabbitMqExchangeName { get; set; }
-
-        [DefaultConfiguration("PowerUps.MicroServices.PushoverFacade")]
-        string RabbitMqQueueName { get; set; }
-
-        [DefaultConfiguration("PowerUps.Notification.Pushover")]
-        string RabbitMqRoutingKey { get; set; }
+        public override IEnumerable<BlockSpecification> Requirements
+        {
+            get
+            {
+                return new[]
+                {
+                    new BlockSpecification{PlugIn = typeof(ICoreBlock)},
+                    new BlockSpecification{PlugIn = typeof(INancySelfHostBlock)},
+                    new BlockSpecification{PlugIn = typeof(IMessagingBlock)},
+                    new BlockSpecification{PlugIn = typeof(IWinServiceBlock)},
+                };
+            }
+        }
     }
 }

@@ -20,23 +20,14 @@
  * -----------------------------------------------------------------------------
  */
 
-using Blocks.Core.Utilities;
-using Blocks.Nancy.Selfhost;
+using Blocks.Core.Messaging.Events;
 
-namespace PowerUps.MicroServices.PushoverFacade
+namespace PowerUps.MicroServices.PushoverFacade.Events
 {
-    public interface IPushoverFacadeConfiguration : ISelfhostConfiguration
+    public class PushoverSendEvent : Event
     {
-        [DefaultConfiguration("RabbitMqConnectionString")]
-        string RabbitMqConnectionStringName { get; set; }
-
-        [DefaultConfiguration("PowerUps.MicroServices")]
-        string RabbitMqExchangeName { get; set; }
-
-        [DefaultConfiguration("PowerUps.MicroServices.PushoverFacade")]
-        string RabbitMqQueueName { get; set; }
-
-        [DefaultConfiguration("PowerUps.Notification.Pushover")]
-        string RabbitMqRoutingKey { get; set; }
+        public string ApiKey { get; set; }
+        public string UserKey { get; set; }
+        public string Message { get; set; }
     }
 }
