@@ -87,8 +87,21 @@
     <Compile Include="Setup\PushoverFacadeBlock.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="..\..\OctopusScripts\PowerUps.Deployment.ps1">
+      <Link>PowerUps.Deployment.ps1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Deploy.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
+    <None Include="PostDeploy.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="PreDeploy.ps1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\Blocks\Source\Blocks.Core\Blocks.Core.csproj">
