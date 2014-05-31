@@ -17,7 +17,7 @@ Target "Clean" (fun _ ->
     )
 
 Target "BuildApp" (fun _ ->
-    MSBuild null "Build" ["Configuration", buildMode] ["./Source/Solutions/PowerUps.MicroServices.sln"]
+    MSBuild null "Build" ["Configuration", buildMode; "RunOctoPack", "true"] ["./Source/Solutions/PowerUps.MicroServices.sln"]
     |> Log "AppBuild-Output: "
     )
 
