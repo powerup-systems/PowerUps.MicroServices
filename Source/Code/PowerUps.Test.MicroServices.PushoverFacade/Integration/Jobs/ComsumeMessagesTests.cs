@@ -68,7 +68,6 @@ namespace PowerUps.Test.MicroServices.PushoverFacade.Integration.Jobs
             var configuration = ServiceLocator.Current.GetInstance<IApplicationConfiguration<IPushoverFacadeConfiguration>>();
             configuration.Set(c => c.RabbitMqExchangeName, "PowerUps.Test.MicroServices.PushoverFacade");
             var exchangeName = new ExchangeName(configuration.Get(c => c.RabbitMqExchangeName));
-            var routingKey = new RoutingKey(configuration.Get(c => c.RabbitMqRoutingKey));
 
             var sender = ServiceLocator.Current.GetInstance<IExternalMessageBusSender>();
             var consumer = ServiceLocator.Current.GetAllInstances<IJob>()
@@ -78,18 +77,19 @@ namespace PowerUps.Test.MicroServices.PushoverFacade.Integration.Jobs
             consumer.Start();
             sender.Connect(exchangeName, configuration.ConnectionString(configuration.Get(c => c.RabbitMqConnectionStringName)));
 
+            const string eventType = "powerups.notification.pushover.send";
             sender.Send(
                 new
                     {
                         id = Guid.NewGuid(),
                         version = 1,
-                        eventType = "powerups.notification.pushover.send",
+                        eventType = eventType,
                         apiKey = "",
                         userKey = "",
                         message = "Test",
                     },
                 exchangeName,
-                routingKey);
+                new RoutingKey(eventType));
 
             Thread.Sleep(100000);
         }

@@ -35,8 +35,5 @@ namespace PowerUps.MicroServices.PushoverFacade
 
         [DefaultConfiguration("PowerUps.MicroServices.PushoverFacade")]
         string RabbitMqQueueName { get; set; }
-
-        [DefaultConfiguration("PowerUps.Notification.Pushover")]
-        string RabbitMqRoutingKey { get; set; }
     }
 }

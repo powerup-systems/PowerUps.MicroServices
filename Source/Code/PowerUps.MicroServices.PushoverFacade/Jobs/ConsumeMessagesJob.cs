@@ -20,6 +20,7 @@
  * -----------------------------------------------------------------------------
  */
 
+using System.Linq;
 using System.Threading.Tasks;
 using Blocks.Core;
 using Blocks.Core.Configuration;
@@ -56,10 +57,10 @@ namespace PowerUps.MicroServices.PushoverFacade.Jobs
             var connectionString = _configuration.ConnectionString(connectionStringName);
             var exchangeName = new ExchangeName(_configuration.Get(c => c.RabbitMqExchangeName));
             var queueName = new QueueName(_configuration.Get(c => c.RabbitMqQueueName));
-            var routingKey = new RoutingKey(_configuration.Get(c => c.RabbitMqRoutingKey));
+            var routingKeys = _messageParserFactory.GetRoutingKeys();
 
             _receiver.Connect(exchangeName, connectionString);
-            _receiver.Subscribe(queueName, b => Task.Factory.StartNew(() => Handle(b)), routingKey);
+            _receiver.Subscribe(queueName, b => Task.Factory.StartNew(() => Handle(b)), routingKeys.ToArray());
         }
 
         public void Stop()
