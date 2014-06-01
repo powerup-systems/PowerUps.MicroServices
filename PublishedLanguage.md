@@ -8,6 +8,7 @@ powerups.notification.pushover.tenantconfiguration
 new {
     id = Guid.NewGuid(),
     eventType = "powerups.notification.pushover.tenantconfiguration",
+    version = 1,
     tenant = "<tenant>",
     apiKey = "<pushover api key>",
 }
