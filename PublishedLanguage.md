@@ -8,7 +8,7 @@ powerups.notification.pushover.tenantconfiguration
 new {
     id = Guid.NewGuid(),
     eventType = "powerups.notification.pushover.tenantconfiguration",
-    tenant = "tenant",
+    tenant = "<tenant>",
     apiKey = "<pushover api key>",
 }
 ```
@@ -23,8 +23,8 @@ new {
     eventType = "powerups.notification.pushover.send",
     version = 1,
     userKey = "<pushover user key>",
-    message = "X-mas is here",
-    tenant = "tenant",
+    message = "<message>",
+    tenant = "<tenant>",
 }
 ```
 
