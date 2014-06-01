@@ -37,6 +37,12 @@
     <Reference Include="EasyNetQ">
       <HintPath>..\..\Solutions\packages\EasyNetQ.0.32.1.268\lib\net40\EasyNetQ.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\Solutions\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\Solutions\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="gelf4net">
       <HintPath>..\..\Solutions\packages\gelf4net.1.2.11.8\lib\net40\gelf4net.dll</HintPath>
     </Reference>
@@ -66,6 +72,7 @@
       <HintPath>..\..\Solutions\packages\structuremap.3.0.3.116\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -78,13 +85,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AntiCorruption\PushoverSendEventParserV1.cs" />
+    <Compile Include="Database\DTOs\TenantApiKey.cs" />
+    <Compile Include="Database\Repositories\ITenantApiKeyRepository.cs" />
+    <Compile Include="Database\Repositories\TenantApiKeyRepository.cs" />
     <Compile Include="EventHandlers\PushoverSendEventHandler.cs" />
     <Compile Include="Events\PushoverSendEvent.cs" />
     <Compile Include="IPushoverFacadeConfiguration.cs" />
     <Compile Include="Jobs\ConsumeMessagesJob.cs" />
+    <Compile Include="Migrations\201406010747134_TenantApiKeys.cs" />
+    <Compile Include="Migrations\201406010747134_TenantApiKeys.Designer.cs">
+      <DependentUpon>201406010747134_TenantApiKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\PushoverFacadeBlock.cs" />
+    <Compile Include="Setup\PushoverFacadeContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\OctopusScripts\PowerUps.Deployment.ps1">
@@ -101,7 +117,9 @@
     <None Include="PostDeploy.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="PreDeploy.ps1" />
+    <None Include="PreDeploy.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\Blocks\Source\Blocks.Core\Blocks.Core.csproj">
@@ -116,12 +134,26 @@
       <Project>{0cfc86ef-4e1a-4ff0-86e5-feff2160b129}</Project>
       <Name>Blocks.Nancy.Selfhost</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Modules\Blocks\Source\Blocks.Persistence\Blocks.Persistence.csproj">
+      <Project>{10d1cf57-3269-42ab-82bd-f5ab8f50c61a}</Project>
+      <Name>Blocks.Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\Blocks\Source\Blocks.WindowsService\Blocks.WindowsService.csproj">
       <Project>{4d7270c7-756f-48c3-a607-52d7b9493209}</Project>
       <Name>Blocks.WindowsService</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201406010747134_TenantApiKeys.resx">
+      <DependentUpon>201406010747134_TenantApiKeys.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\Solutions\packages\EntityFramework.6.1.0\tools\migrate.exe">
+      <Link>migrate.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

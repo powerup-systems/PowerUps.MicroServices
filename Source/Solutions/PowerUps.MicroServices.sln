@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blocks.TestHelpers", "..\..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blocks.Test.Core", "..\..\Modules\Blocks\Source\Blocks.Test.Core\Blocks.Test.Core.csproj", "{C3862497-1217-44E1-9594-D449C9936A6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blocks.Persistence", "..\..\Modules\Blocks\Source\Blocks.Persistence\Blocks.Persistence.csproj", "{10D1CF57-3269-42AB-82BD-F5AB8F50C61A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{C3862497-1217-44E1-9594-D449C9936A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3862497-1217-44E1-9594-D449C9936A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3862497-1217-44E1-9594-D449C9936A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D1CF57-3269-42AB-82BD-F5AB8F50C61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D1CF57-3269-42AB-82BD-F5AB8F50C61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D1CF57-3269-42AB-82BD-F5AB8F50C61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D1CF57-3269-42AB-82BD-F5AB8F50C61A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,5 +93,6 @@ Global
 		{86CA5693-B291-4998-A99E-A68A627F8230} = {896B7511-BC40-4260-81F5-1454D637B602}
 		{D922C83F-E5DC-46E6-B33F-F9AF5FD542BF} = {2F0DBBB8-D06C-49B7-9F16-2FB28B4A6E49}
 		{C3862497-1217-44E1-9594-D449C9936A6D} = {896B7511-BC40-4260-81F5-1454D637B602}
+		{10D1CF57-3269-42AB-82BD-F5AB8F50C61A} = {2F0DBBB8-D06C-49B7-9F16-2FB28B4A6E49}
 	EndGlobalSection
 EndGlobal
