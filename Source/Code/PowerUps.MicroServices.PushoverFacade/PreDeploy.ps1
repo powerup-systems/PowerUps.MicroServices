@@ -5,7 +5,7 @@ Import-Module $MyDir"\PowerUps.Deployment.ps1" -Force
 
 $ServiceName = $OctopusParameters["svc.name"]
 $ServiceExecutable = $OctopusParameters["Octopus.Action.Package.CustomInstallationDirectory"]+'\PowerUps.MicroServices.PushoverFacade.exe'
-$AppConfigPath = $OctopusOriginalPackageDirectoryPath+'\PowerUps.MicroServices.PushoverFacade.config'
+$AppConfigPath = $OctopusOriginalPackageDirectoryPath+'\PowerUps.MicroServices.PushoverFacade.exe.config'
 
 # Print configuration
 Write-Host $ServiceName
