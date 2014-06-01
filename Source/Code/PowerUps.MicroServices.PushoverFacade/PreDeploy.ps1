@@ -1,6 +1,6 @@
 ﻿Write-Host "PRE-DEPLOY"
 
-. .\PowerUps.Deployment.ps1
+Import-Module "PowerUps.Deployment.ps1" -Force
 
 $ServiceName = $OctopusParameters["svc.name"]
 $ServiceExecutable = $OctopusParameters["Octopus.Action.Package.CustomInstallationDirectory"]+'\PowerUps.MicroServices.PushoverFacade.exe'

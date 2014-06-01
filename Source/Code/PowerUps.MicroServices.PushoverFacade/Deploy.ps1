@@ -1,6 +1,6 @@
 ﻿Write-Host "DEPLOY"
 
-. .\PowerUps.Deployment.ps1
+Import-Module "PowerUps.Deployment.ps1" -Force
 
 $ServiceExecutable = $OctopusParameters["Octopus.Action.Package.CustomInstallationDirectory"]+'\PowerUps.MicroServices.PushoverFacade.exe'
 

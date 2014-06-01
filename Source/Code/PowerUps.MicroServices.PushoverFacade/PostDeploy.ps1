@@ -1,4 +1,4 @@
 ﻿Write-Host 'POST-DEPLOY'
 
-. .\PowerUps.Deployment.ps1
+Import-Module "PowerUps.Deployment.ps1" -Force
 
