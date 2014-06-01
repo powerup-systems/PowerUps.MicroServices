@@ -85,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AntiCorruption\PushoverSendEventParserV1.cs" />
-    <Compile Include="AntiCorruption\PushoverTenantConfigurationParser.cs" />
+    <Compile Include="AntiCorruption\PushoverTenantConfigurationParserV1.cs" />
     <Compile Include="Database\DTOs\TenantApiKey.cs" />
     <Compile Include="Database\Repositories\ITenantApiKeyRepository.cs" />
     <Compile Include="Database\Repositories\TenantApiKeyRepository.cs" />

@@ -14,6 +14,7 @@ Write-Host $AppConfigPath
 
 #Connection strings
 XmlPoke $AppConfigPath "//*[local-name() = 'add' and @name='RabbitMqConnectionString']/@connectionString" $OctopusParameters["mq.connectionstring"]
+XmlPoke $AppConfigPath "//*[local-name() = 'add' and @name='MsSqlConnectionString']/@connectionString" $OctopusParameters["sql.connectionstring"]
 
 # Application configuration
 XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_ServiceName']/@value" $OctopusParameters["svc.name"]
