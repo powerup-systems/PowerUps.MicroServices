@@ -1,10 +1,9 @@
 
-function Install-TopShelfService
+function Install-TopShelfService {
     param
     (
         [string] $ExePath
     )
-{
     Write-Host "Installing service"
     & $ExePath install | Write-Host
     if ($LastExitCode -ne 0) { throw 'Failed to install service' }
@@ -15,12 +14,11 @@ function Install-TopShelfService
 }
 
 
-function Create-EventSource
+function Create-EventSource {
     param
     (
         [string] $EventSourceName
     )
-{
     if ([System.Diagnostics.EventLog]::SourceExists($EventSourceName) -eq $false)
     {
         Write-Host 'Creating event source'
@@ -33,16 +31,14 @@ function Create-EventSource
 }
 
 
-function Uninstall-TopShelfService
+function Uninstall-TopShelfService {
     param
     (
         [string] $ServiceName,
         [string] $ExePath
     )
-{
     $Service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
-    if ($Service)
-    {
+    if ($Service) {
         Write-Host 'Stopping and uninstalling service'
         & $ExePath stop | Write-Host
         & $ExePath uninstall | Write-Host
@@ -55,13 +51,13 @@ function Uninstall-TopShelfService
 
 
 function XmlPoke {
-        param
-        (
-                [string] $FilePath,
-                [string] $XPath,
-                [string] $Value,
-                [switch] $Verbose
-        )
+    param
+    (
+        [string] $FilePath,
+        [string] $XPath,
+        [string] $Value,
+        [switch] $Verbose
+    )
     if ($Verbose) {
         $VerbosePreference = 'Continue'
     }
