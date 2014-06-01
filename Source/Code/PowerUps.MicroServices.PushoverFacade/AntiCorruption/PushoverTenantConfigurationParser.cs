@@ -20,32 +20,29 @@
  * -----------------------------------------------------------------------------
  */
 
-using System.Collections.Generic;
-using Blocks.Core;
-using Blocks.Core.Blocks;
-using Blocks.Core.Specifications;
-using Blocks.Messaging;
-using Blocks.Nancy.Selfhost;
-using Blocks.Persistence;
-using Blocks.WindowsService;
+using Blocks.Core.Messaging.Events;
+using Blocks.Messaging.AntiCorruption;
+using PowerUps.MicroServices.PushoverFacade.Events;
 
-namespace PowerUps.Test.MicroServices.PushoverFacade.Integration
+namespace PowerUps.MicroServices.PushoverFacade.AntiCorruption
 {
-    public class PushoverFacadeIntegrationBlock : BlockBase
+    public class PushoverTenantConfigurationParserV1 : MessageParser
     {
-        public override IEnumerable<BlockSpecification> Requirements
+        public override string RoutingKey { get { return "powerups.notification.pushover.tenantconfiguration"; } }
+
+        public override bool CanParse(dynamic message)
         {
-            get
-            {
-                return new[]
+            return message.eventType == RoutingKey && message.version == 1;
+        }
+
+        protected override Event Parse(dynamic message)
+        {
+            return new PushoverTenantConfigurationEvent
                 {
-                    new BlockSpecification{PlugIn = typeof(ICoreBlock)},
-                    new BlockSpecification{PlugIn = typeof(INancySelfHostBlock)},
-                    new BlockSpecification{PlugIn = typeof(IMessagingBlock)},
-                    new BlockSpecification{PlugIn = typeof(IWinServiceBlock)},
-                    new BlockSpecification{PlugIn = typeof(IPersistenceBlock)}, 
+                    Id = message.id,
+                    Tenant = message.tenant,
+                    ApiKey = message.apiKey,
                 };
-            }
         }
     }
 }

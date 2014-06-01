@@ -85,11 +85,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AntiCorruption\PushoverSendEventParserV1.cs" />
+    <Compile Include="AntiCorruption\PushoverTenantConfigurationParser.cs" />
     <Compile Include="Database\DTOs\TenantApiKey.cs" />
     <Compile Include="Database\Repositories\ITenantApiKeyRepository.cs" />
     <Compile Include="Database\Repositories\TenantApiKeyRepository.cs" />
     <Compile Include="EventHandlers\PushoverSendEventHandler.cs" />
+    <Compile Include="EventHandlers\PushoverTenantConfigurationHandler.cs" />
     <Compile Include="Events\PushoverSendEvent.cs" />
+    <Compile Include="Events\PushoverTenantConfigurationEvent.cs" />
     <Compile Include="IPushoverFacadeConfiguration.cs" />
     <Compile Include="Jobs\ConsumeMessagesJob.cs" />
     <Compile Include="Migrations\201406010747134_TenantApiKeys.cs" />

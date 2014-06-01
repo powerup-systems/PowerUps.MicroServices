@@ -27,6 +27,7 @@ using Blocks.Core.Setup;
 using Blocks.Messaging.Setup;
 using Blocks.Nancy.Selfhost;
 using Blocks.Nancy.Selfhost.Setup;
+using Blocks.Persistence.Setup;
 using Blocks.WindowsService.Setup;
 using PowerUps.MicroServices.PushoverFacade.Setup;
 
@@ -59,6 +60,7 @@ namespace PowerUps.MicroServices.PushoverFacade
                             new NancySelfHostBlock(),
                             new WinServiceBlock(),
                             new PushoverFacadeBlock(),
+                            new PersistenceBlock(),
                         }
                 };
         }

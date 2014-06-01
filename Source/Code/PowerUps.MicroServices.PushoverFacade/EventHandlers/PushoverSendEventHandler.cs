@@ -24,6 +24,7 @@ using System.Collections.Specialized;
 using System.Net;
 using Blocks.Core;
 using Blocks.Messaging.Events;
+using PowerUps.MicroServices.PushoverFacade.Database.Repositories;
 using PowerUps.MicroServices.PushoverFacade.Events;
 
 namespace PowerUps.MicroServices.PushoverFacade.EventHandlers
@@ -33,19 +34,33 @@ namespace PowerUps.MicroServices.PushoverFacade.EventHandlers
     {
         private const string PushOverUrl = "https://api.pushover.net/1/messages.json";
         private readonly ILogger _logger;
+        private readonly ITenantApiKeyRepository _tenantApiKeyRepository;
 
         public PushoverSendEventHandler(
-            ILogger logger)
+            ILogger logger,
+            ITenantApiKeyRepository tenantApiKeyRepository)
         {
             _logger = logger;
+            _tenantApiKeyRepository = tenantApiKeyRepository;
         }
 
         public void When(PushoverSendEvent e)
         {
-            _logger.InfoFormat("Sending Pushover message '{0}' to user '{1}'", e.Message, e.UserKey);
+            var tenantApiKey = _tenantApiKeyRepository.Fetch(e.Tenant);
+            if (tenantApiKey == null)
+            {
+                _logger.ErrorFormat(
+                    "No API key found for tenant '{0}'",
+                    e.Tenant);
+                return;
+            }
+
+            _logger.InfoFormat("Sending Pushover message '{0}' to user '{1}'",
+                e.Message,
+                e.UserKey);
 
             var parameters = new NameValueCollection();
-            parameters["token"] = e.ApiKey;
+            parameters["token"] = tenantApiKey.ApiKey;
             parameters["user"] = e.UserKey;
             parameters["message"] = e.Message;
 

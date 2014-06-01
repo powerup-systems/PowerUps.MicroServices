@@ -28,8 +28,10 @@ using Blocks.Core.Specifications;
 using Blocks.Messaging;
 using Blocks.Messaging.Extensions;
 using Blocks.Nancy.Selfhost;
+using Blocks.Persistence;
 using Blocks.WindowsService;
 using Blocks.WindowsService.Extensions;
+using Microsoft.Practices.ServiceLocation;
 
 namespace PowerUps.MicroServices.PushoverFacade.Setup
 {
@@ -45,6 +47,7 @@ namespace PowerUps.MicroServices.PushoverFacade.Setup
                         new BlockSpecification{PlugIn = typeof(IMessagingBlock)}, 
                         new BlockSpecification{PlugIn = typeof(INancySelfHostBlock)},
                         new BlockSpecification{PlugIn = typeof(IWinServiceBlock)}, 
+                        new BlockSpecification{PlugIn = typeof(IPersistenceBlock)}, 
                     };
             }
         }
@@ -56,6 +59,9 @@ namespace PowerUps.MicroServices.PushoverFacade.Setup
             register.RegisterJobs(this);
             register.RegisterMessageParsers(this);
             register.RegisterEventSubscribers(this);
+
+            var modelRegister = ServiceLocator.Current.GetInstance<IModelRegistration>();
+            modelRegister.Register<PushoverFacadeContext>();
         }
     }
 }

@@ -23,6 +23,7 @@
 using System.Data.Entity;
 using Blocks.Persistence.Setup;
 using PowerUps.MicroServices.PushoverFacade.Database.DTOs;
+using Topshelf.Hosts;
 
 namespace PowerUps.MicroServices.PushoverFacade.Setup
 {

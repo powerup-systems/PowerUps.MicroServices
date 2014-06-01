@@ -31,6 +31,7 @@ using Blocks.Messaging;
 using Blocks.Messaging.Messages;
 using Blocks.Messaging.Setup;
 using Blocks.Nancy.Selfhost.Setup;
+using Blocks.Persistence.Setup;
 using Blocks.TestHelpers;
 using Blocks.WindowsService.Jobs;
 using Blocks.WindowsService.Setup;
@@ -57,6 +58,7 @@ namespace PowerUps.Test.MicroServices.PushoverFacade.Integration.Jobs
                         new WinServiceBlock(),
                         new NancySelfHostBlock(),
                         new PushoverFacadeIntegrationBlock(),
+                        new PersistenceBlock(),
                     };
             }
         }

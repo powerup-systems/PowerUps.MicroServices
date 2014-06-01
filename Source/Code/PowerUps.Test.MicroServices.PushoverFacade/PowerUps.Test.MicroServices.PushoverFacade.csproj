@@ -113,6 +113,10 @@
       <Project>{0cfc86ef-4e1a-4ff0-86e5-feff2160b129}</Project>
       <Name>Blocks.Nancy.Selfhost</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Modules\Blocks\Source\Blocks.Persistence\Blocks.Persistence.csproj">
+      <Project>{10d1cf57-3269-42ab-82bd-f5ab8f50c61a}</Project>
+      <Name>Blocks.Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\Blocks\Source\Blocks.TestHelpers\Blocks.TestHelpers.csproj">
       <Project>{d922c83f-e5dc-46e6-b33f-f9af5fd542bf}</Project>
       <Name>Blocks.TestHelpers</Name>

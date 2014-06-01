@@ -20,32 +20,31 @@
  * -----------------------------------------------------------------------------
  */
 
-using System.Collections.Generic;
-using Blocks.Core;
-using Blocks.Core.Blocks;
-using Blocks.Core.Specifications;
-using Blocks.Messaging;
-using Blocks.Nancy.Selfhost;
-using Blocks.Persistence;
-using Blocks.WindowsService;
+using Blocks.Messaging.Events;
+using PowerUps.MicroServices.PushoverFacade.Database.DTOs;
+using PowerUps.MicroServices.PushoverFacade.Database.Repositories;
+using PowerUps.MicroServices.PushoverFacade.Events;
 
-namespace PowerUps.Test.MicroServices.PushoverFacade.Integration
+namespace PowerUps.MicroServices.PushoverFacade.EventHandlers
 {
-    public class PushoverFacadeIntegrationBlock : BlockBase
+    public class PushoverTenantConfigurationHandler :
+        ISubscribeToEvent<PushoverTenantConfigurationEvent>
     {
-        public override IEnumerable<BlockSpecification> Requirements
+        private readonly ITenantApiKeyRepository _tenantApiKeyRepository;
+
+        public PushoverTenantConfigurationHandler(
+            ITenantApiKeyRepository tenantApiKeyRepository)
         {
-            get
-            {
-                return new[]
+            _tenantApiKeyRepository = tenantApiKeyRepository;
+        }
+
+        public void When(PushoverTenantConfigurationEvent e)
+        {
+            _tenantApiKeyRepository.Store(new TenantApiKey
                 {
-                    new BlockSpecification{PlugIn = typeof(ICoreBlock)},
-                    new BlockSpecification{PlugIn = typeof(INancySelfHostBlock)},
-                    new BlockSpecification{PlugIn = typeof(IMessagingBlock)},
-                    new BlockSpecification{PlugIn = typeof(IWinServiceBlock)},
-                    new BlockSpecification{PlugIn = typeof(IPersistenceBlock)}, 
-                };
-            }
+                    Tenant = e.Tenant,
+                    ApiKey = e.ApiKey,
+                });
         }
     }
 }

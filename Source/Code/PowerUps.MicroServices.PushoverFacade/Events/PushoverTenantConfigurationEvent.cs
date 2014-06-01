@@ -20,32 +20,13 @@
  * -----------------------------------------------------------------------------
  */
 
-using System.Collections.Generic;
-using Blocks.Core;
-using Blocks.Core.Blocks;
-using Blocks.Core.Specifications;
-using Blocks.Messaging;
-using Blocks.Nancy.Selfhost;
-using Blocks.Persistence;
-using Blocks.WindowsService;
+using Blocks.Core.Messaging.Events;
 
-namespace PowerUps.Test.MicroServices.PushoverFacade.Integration
+namespace PowerUps.MicroServices.PushoverFacade.Events
 {
-    public class PushoverFacadeIntegrationBlock : BlockBase
+    public class PushoverTenantConfigurationEvent : Event
     {
-        public override IEnumerable<BlockSpecification> Requirements
-        {
-            get
-            {
-                return new[]
-                {
-                    new BlockSpecification{PlugIn = typeof(ICoreBlock)},
-                    new BlockSpecification{PlugIn = typeof(INancySelfHostBlock)},
-                    new BlockSpecification{PlugIn = typeof(IMessagingBlock)},
-                    new BlockSpecification{PlugIn = typeof(IWinServiceBlock)},
-                    new BlockSpecification{PlugIn = typeof(IPersistenceBlock)}, 
-                };
-            }
-        }
+        public string Tenant { get; set; }
+        public string ApiKey { get; set; }
     }
 }
