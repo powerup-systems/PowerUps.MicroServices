@@ -12,12 +12,14 @@ Write-Host $ServiceName
 Write-Host $ServiceExecutable
 Write-Host $AppConfigPath
 
+#Connection strings
+XmlPoke $AppConfigPath "//*[local-name() = 'add' and @name='RabbitMqConnectionString']/@value" $OctopusParameters["mq.connectionstring"]
+
 # Application configuration
 XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_ServiceName']/@value" $OctopusParameters["svc.name"]
 XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_ServiceDescription']/@value" $OctopusParameters["svc.description"]
 XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_Port']/@value" $OctopusParameters["conf.port"]
 XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_RabbitMqExchangeName']/@value" $OctopusParameters["mq.exchange"]
-XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='RabbitMqConnectionString']/@value" $OctopusParameters["mq.connectionstring"]
 
 # Log configuration
 XmlPoke $AppConfigPath "/configuration/log4net/root/level/@value" $OctopusParameters["log.level"]
