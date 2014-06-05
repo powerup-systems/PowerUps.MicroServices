@@ -119,8 +119,12 @@
     <Compile Include="Setup\PushoverFacadeContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\OctopusScripts\PowerUps.Deployment.ps1">
-      <Link>PowerUps.Deployment.ps1</Link>
+    <None Include="..\..\..\Modules\CiPsLib\tools\CiPsLib.Common.psm1">
+      <Link>CiPsLib.Common.psm1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\Modules\CiPsLib\tools\CiPsLib.TopShelf.psm1">
+      <Link>CiPsLib.TopShelf.psm1</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="App.config">
