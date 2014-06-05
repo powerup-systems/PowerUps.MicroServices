@@ -54,7 +54,6 @@ namespace PowerUps.MicroServices.Core.Setup
             base.Initialize(register);
             register.ScanWithDefaultConventions(this);
             register.RegisterJobs(this);
-            register.RegisterMessageParsers(this);
             register.RegisterEventSubscribers(this);
         }
     }
