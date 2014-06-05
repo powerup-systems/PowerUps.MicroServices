@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blocks.Persistence", "..\..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blocks.Core.LogEngines.SeriLog", "..\..\Modules\Blocks\Source\Blocks.Core.LogEngines.SeriLog\Blocks.Core.LogEngines.SeriLog.csproj", "{55A23A30-A597-4A75-94C3-19941A5761C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerUps.MicroServices.Core", "..\Code\PowerUps.MicroServices.Core\PowerUps.MicroServices.Core.csproj", "{1A8B4911-EB95-4EAB-A6A7-D46AF45A5FB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{55A23A30-A597-4A75-94C3-19941A5761C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55A23A30-A597-4A75-94C3-19941A5761C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55A23A30-A597-4A75-94C3-19941A5761C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A8B4911-EB95-4EAB-A6A7-D46AF45A5FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8B4911-EB95-4EAB-A6A7-D46AF45A5FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8B4911-EB95-4EAB-A6A7-D46AF45A5FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A8B4911-EB95-4EAB-A6A7-D46AF45A5FB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

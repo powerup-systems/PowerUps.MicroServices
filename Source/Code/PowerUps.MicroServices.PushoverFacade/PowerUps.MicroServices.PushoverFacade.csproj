@@ -106,8 +106,6 @@
     <Compile Include="EventHandlers\PushoverTenantConfigurationHandler.cs" />
     <Compile Include="Events\PushoverSendEvent.cs" />
     <Compile Include="Events\PushoverTenantConfigurationEvent.cs" />
-    <Compile Include="IPushoverFacadeConfiguration.cs" />
-    <Compile Include="Jobs\ConsumeMessagesJob.cs" />
     <Compile Include="Migrations\201406010747134_TenantApiKeys.cs" />
     <Compile Include="Migrations\201406010747134_TenantApiKeys.Designer.cs">
       <DependentUpon>201406010747134_TenantApiKeys.cs</DependentUpon>
@@ -125,6 +123,10 @@
     </None>
     <None Include="..\..\..\Modules\CiPsLib\tools\CiPsLib.TopShelf.psm1">
       <Link>CiPsLib.TopShelf.psm1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Scripts\PowerUps.MicroServices.Core.psm1">
+      <Link>PowerUps.MicroServices.Core.psm1</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="App.config">
@@ -165,6 +167,10 @@
     <ProjectReference Include="..\..\..\Modules\Blocks\Source\Blocks.WindowsService\Blocks.WindowsService.csproj">
       <Project>{4d7270c7-756f-48c3-a607-52d7b9493209}</Project>
       <Name>Blocks.WindowsService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PowerUps.MicroServices.Core\PowerUps.MicroServices.Core.csproj">
+      <Project>{1a8b4911-eb95-4eab-a6a7-d46af45a5fb8}</Project>
+      <Name>PowerUps.MicroServices.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

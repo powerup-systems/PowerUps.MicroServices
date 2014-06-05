@@ -23,17 +23,27 @@
 using Blocks.Core.Utilities;
 using Blocks.Nancy.Selfhost;
 
-namespace PowerUps.MicroServices.PushoverFacade
+namespace PowerUps.MicroServices.Core
 {
-    public interface IPushoverFacadeConfiguration : ISelfhostConfiguration
+    public interface IMicroServicesCoreConfiguration : ISelfhostConfiguration
     {
+        string EnvName { get; set; }
+
+        string AppName { get; set; }
+
         [DefaultConfiguration("RabbitMqConnectionString")]
         string RabbitMqConnectionStringName { get; set; }
 
         [DefaultConfiguration("PowerUps.MicroServices")]
         string RabbitMqExchangeName { get; set; }
 
-        [DefaultConfiguration("PowerUps.MicroServices.PushoverFacade")]
+        [DefaultConfiguration("MicroService")]
         string RabbitMqQueueName { get; set; }
+
+        [DefaultConfiguration("DEBUG")]
+        string LogLevel { get; set; }
+
+        [DefaultConfiguration("http://localhost:9200")]
+        string ElasticSearchUrl { get; set; }
     }
 }

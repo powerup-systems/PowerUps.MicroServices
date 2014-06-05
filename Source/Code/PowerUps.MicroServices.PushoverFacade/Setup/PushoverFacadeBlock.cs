@@ -32,6 +32,7 @@ using Blocks.Persistence;
 using Blocks.WindowsService;
 using Blocks.WindowsService.Extensions;
 using Microsoft.Practices.ServiceLocation;
+using PowerUps.MicroServices.Core;
 
 namespace PowerUps.MicroServices.PushoverFacade.Setup
 {
@@ -47,7 +48,8 @@ namespace PowerUps.MicroServices.PushoverFacade.Setup
                         new BlockSpecification{PlugIn = typeof(IMessagingBlock)}, 
                         new BlockSpecification{PlugIn = typeof(INancySelfHostBlock)},
                         new BlockSpecification{PlugIn = typeof(IWinServiceBlock)}, 
-                        new BlockSpecification{PlugIn = typeof(IPersistenceBlock)}, 
+                        new BlockSpecification{PlugIn = typeof(IPersistenceBlock)},
+                        new BlockSpecification{PlugIn = typeof(IMicroServicesCoreBlock)}, 
                     };
             }
         }

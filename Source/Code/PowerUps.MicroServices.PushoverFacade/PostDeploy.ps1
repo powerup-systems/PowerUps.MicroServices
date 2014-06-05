@@ -1,9 +1,7 @@
 ﻿Write-Host 'POST-DEPLOY'
 
-Set-Location $OctopusParameters["Octopus.Action.Package.CustomInstallationDirectory"] -PassThru | Write-Host
-$MigrateExe = $OctopusParameters["Octopus.Action.Package.CustomInstallationDirectory"]+'\migrate.exe'
-& $MigrateExe PowerUps.MicroServices.PushoverFacade.exe /startupConfigurationFile="PowerUps.MicroServices.PushoverFacade.exe.config" /verbose | Write-Host
-if ($LastExitCode -ne 0)
-{
-    throw "Error: Failed to execute migrations"
-}
+$MyDir = Split-Path $MyInvocation.MyCommand.Definition
+Import-Module $MyDir"\CiPsLib.Common.psm1" -Force
+Import-Module $MyDir"\PowerUps.MicroServices.Core.psm1" -Force
+
+PostDeploy-MicroServicesDefault -EfMigrate $true

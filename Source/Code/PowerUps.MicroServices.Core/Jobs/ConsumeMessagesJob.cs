@@ -29,6 +29,7 @@ using Blocks.Messaging.AntiCorruption;
 using Blocks.Messaging.Messages;
 using Blocks.WindowsService.Jobs;
 using Newtonsoft.Json.Linq;
+using PowerUps.MicroServices.Core;
 
 namespace PowerUps.MicroServices.PushoverFacade.Jobs
 {
@@ -36,13 +37,13 @@ namespace PowerUps.MicroServices.PushoverFacade.Jobs
     {
         private readonly ILogger _logger;
         private IExternalMessageBusReceiver _receiver;
-        private readonly IApplicationConfiguration<IPushoverFacadeConfiguration> _configuration;
+        private readonly IApplicationConfiguration<IMicroServicesCoreConfiguration> _configuration;
         private readonly IMessageParserFactory _messageParserFactory;
 
         public ConsumeMessagesJob(
             ILogger logger,
             IExternalMessageBusReceiver receiver,
-            IApplicationConfiguration<IPushoverFacadeConfiguration> configuration,
+            IApplicationConfiguration<IMicroServicesCoreConfiguration> configuration,
             IMessageParserFactory messageParserFactory)
         {
             _logger = logger;
@@ -81,7 +82,7 @@ namespace PowerUps.MicroServices.PushoverFacade.Jobs
 
         private void Handle(JObject body)
         {
-            _logger.Debug("Received message");
+            _logger.DebugFormat("Received message\n{0}", body.ToString());
             _messageParserFactory.ParseAndPublish(body);
         }
     }
