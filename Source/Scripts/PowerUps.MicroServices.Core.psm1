@@ -32,7 +32,12 @@ function PostDeploy-MicroServicesDefault {
     if ($EfMigrate) {
         Set-Location $OctopusParameters["Octopus.Action.Package.CustomInstallationDirectory"] -PassThru | Write-Host
         $MigrateExe = $OctopusParameters["Octopus.Action.Package.CustomInstallationDirectory"]+'\migrate.exe'
-        & $MigrateExe $OctopusParameters["app.exeName"] /startupConfigurationFile=$OctopusParameters["app.exeName"]+'.config' /verbose | Write-Host
+		$AppConfig = $OctopusParameters["app.exeName"]+'.config'
+
+		Write-Host $MigrateExe
+		Write-Host $AppConfig
+
+        & $MigrateExe $OctopusParameters["app.exeName"] /startupConfigurationFile=$AppConfig /verbose | Write-Host
         if ($LastExitCode -ne 0)
         {
             throw "Error: Failed to execute migrations"
