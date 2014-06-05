@@ -79,7 +79,7 @@ namespace PowerUps.Test.MicroServices.PushoverFacade.Integration.Jobs
             consumer.Start();
             sender.Connect(exchangeName, configuration.ConnectionString(configuration.Get(c => c.RabbitMqConnectionStringName)));
 
-            const string eventType = "powerups.notification.pushover.send";
+            const string eventType = "powerups.notification.facade.pushover.send";
             sender.Send(
                 new
                     {

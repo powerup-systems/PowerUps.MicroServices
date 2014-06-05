@@ -28,7 +28,7 @@ namespace PowerUps.MicroServices.PushoverFacade.AntiCorruption
 {
     public class PushoverTenantConfigurationParserV1 : MessageParser
     {
-        public override string RoutingKey { get { return "powerups.notification.pushover.tenantconfiguration"; } }
+        public override string RoutingKey { get { return "powerups.notification.facade.pushover.tenantconfiguration"; } }
 
         public override bool CanParse(dynamic message)
         {
