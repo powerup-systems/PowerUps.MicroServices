@@ -38,7 +38,7 @@ using Blocks.WindowsService.Setup;
 using Microsoft.Practices.ServiceLocation;
 using NUnit.Framework;
 using PowerUps.MicroServices.Core;
-using PowerUps.MicroServices.PushoverFacade.Jobs;
+using PowerUps.MicroServices.Core.Jobs;
 using PowerUps.MicroServices.PushoverFacade.Setup;
 
 namespace PowerUps.Test.MicroServices.PushoverFacade.Integration.Jobs

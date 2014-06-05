@@ -29,9 +29,8 @@ using Blocks.Messaging.AntiCorruption;
 using Blocks.Messaging.Messages;
 using Blocks.WindowsService.Jobs;
 using Newtonsoft.Json.Linq;
-using PowerUps.MicroServices.Core;
 
-namespace PowerUps.MicroServices.PushoverFacade.Jobs
+namespace PowerUps.MicroServices.Core.Jobs
 {
     public class ConsumeMessagesJob : DisposableObject, IJob
     {
