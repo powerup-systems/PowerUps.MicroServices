@@ -30,9 +30,8 @@ using Blocks.Persistence.Setup;
 using Blocks.WindowsService.Setup;
 using PowerUps.MicroServices.Core;
 using PowerUps.MicroServices.Core.Setup;
-using PowerUps.MicroServices.PushoverFacade.Setup;
 
-namespace PowerUps.MicroServices.PushoverFacade
+namespace PowerUps.MicroServices.NotificationsHub
 {
     class Program
     {
@@ -58,7 +57,6 @@ namespace PowerUps.MicroServices.PushoverFacade
                 new MessagingBlock(),
                 new NancySelfHostBlock(),
                 new WinServiceBlock(),
-                new PushoverFacadeBlock(),
                 new PersistenceBlock(),
                 new MicroServicesCoreBlock());
         }

@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerUps.MicroServices.Core
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{99B68542-7F45-47E8-9D24-2C7549339EF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerUps.MicroServices.NotificationsHub", "..\Code\PowerUps.MicroServices.NotificationsHub\PowerUps.MicroServices.NotificationsHub.csproj", "{76E2799E-F5BC-4BBF-83AA-156A9B5E4FBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,10 @@ Global
 		{1A8B4911-EB95-4EAB-A6A7-D46AF45A5FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A8B4911-EB95-4EAB-A6A7-D46AF45A5FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A8B4911-EB95-4EAB-A6A7-D46AF45A5FB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E2799E-F5BC-4BBF-83AA-156A9B5E4FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E2799E-F5BC-4BBF-83AA-156A9B5E4FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E2799E-F5BC-4BBF-83AA-156A9B5E4FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E2799E-F5BC-4BBF-83AA-156A9B5E4FBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
