@@ -1,3 +1,6 @@
 [submodule "Modules/Blocks"]
 	path = Modules/Blocks
 	url = https://github.com/rasmus/Blocks.git
+[submodule "Modules/CiPsLib"]
+	path = Modules/CiPsLib
+	url = https://github.com/rasmus/CiPsLib
