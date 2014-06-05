@@ -22,7 +22,9 @@
 
 using System;
 using System.Collections.Generic;
-using Blocks.Core;
+using System.Configuration;
+using Blocks.Core.ApplicationInformation;
+using Blocks.Core.LogEngines.SeriLog;
 using Blocks.Core.Setup;
 using Blocks.Messaging.Setup;
 using Blocks.Nancy.Selfhost;
@@ -30,6 +32,9 @@ using Blocks.Nancy.Selfhost.Setup;
 using Blocks.Persistence.Setup;
 using Blocks.WindowsService.Setup;
 using PowerUps.MicroServices.PushoverFacade.Setup;
+using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.ElasticSearch;
 
 namespace PowerUps.MicroServices.PushoverFacade
 {
@@ -51,18 +56,34 @@ namespace PowerUps.MicroServices.PushoverFacade
 
         public static BlocksOptions CreateBlocksOptions()
         {
-            return new BlocksOptions
-                {
-                    Blocks = new List<IBlock>
-                        {
-                            new CoreBlock(),
-                            new MessagingBlock(),
-                            new NancySelfHostBlock(),
-                            new WinServiceBlock(),
-                            new PushoverFacadeBlock(),
-                            new PersistenceBlock(),
-                        }
-                };
+            var appInformation = AppInformation.Create(
+                new AppName(ConfigurationManager.AppSettings["IPushoverFacadeConfiguration_AppName"]),
+                typeof (Program).Assembly.GetName().Version,
+                new EnvName(ConfigurationManager.AppSettings["IPushoverFacadeConfiguration_EnvName"]));
+            var logEventLevel = SeriLogEngine.ParseLogEventLevel(ConfigurationManager.AppSettings["IPushoverFacadeConfiguration_LogLevel"]);
+
+            var logEngine = new SeriLogEngine(
+                Environment.UserInteractive,
+                logEventLevel,
+                appInformation,
+                ConfigureLog);
+
+            return BlocksOptions.Create(
+                appInformation,
+                () => logEngine,
+                new CoreBlock(),
+                new MessagingBlock(),
+                new NancySelfHostBlock(),
+                new WinServiceBlock(),
+                new PushoverFacadeBlock(),
+                new PersistenceBlock());
+        }
+
+        private static LoggerConfiguration ConfigureLog(LoggerConfiguration loggerConfiguration, LogEventLevel logEventLevel)
+        {
+            var elasticSearchUrl = ConfigurationManager.AppSettings["IPushoverFacadeConfiguration_ElasticSearchUrl"];
+            return loggerConfiguration
+                .WriteTo.Sink(new ElasticSearchSink(new Uri(elasticSearchUrl), "logstash-{0:yyyy.MM}", 1, 1000, TimeSpan.FromSeconds(3), null), logEventLevel);
         }
     }
 }

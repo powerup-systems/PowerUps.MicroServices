@@ -21,11 +21,10 @@ XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfig
 XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_ServiceDescription']/@value" $OctopusParameters["svc.description"]
 XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_Port']/@value" $OctopusParameters["conf.port"]
 XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_RabbitMqExchangeName']/@value" $OctopusParameters["mq.exchange"]
-
-# Log configuration
-XmlPoke $AppConfigPath "/configuration/log4net/root/level/@value" $OctopusParameters["log.level"]
-XmlPoke $AppConfigPath "/configuration/log4net/root/appender-ref/@ref" $OctopusParameters["log.appender"]
-XmlPoke $AppConfigPath "/configuration/log4net/appender[@name='GelfUdpAppender']/layout/param[@name='AdditionalFields']/@value" $OctopusParameters["log.additionalFields"] -Verbose
+XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_LogLevel']/@value" $OctopusParameters["log.level"]
+XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_ElasticSearchUrl']/@value" $OctopusParameters["es.url"]
+XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_EnvName']/@value" $OctopusParameters["env.name"]
+XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IPushoverFacadeConfiguration_AppName']/@value" $OctopusParameters["app.shortName"]
 
 # Install service
 Uninstall-TopShelfService -ServiceName $ServiceName -ExePath $ServiceExecutable

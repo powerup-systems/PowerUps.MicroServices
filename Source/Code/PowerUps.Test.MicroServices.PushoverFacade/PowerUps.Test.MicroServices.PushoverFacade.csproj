@@ -67,6 +67,12 @@
     <Reference Include="RabbitMQ.Client">
       <HintPath>..\..\Solutions\packages\RabbitMQ.Client.3.3.0\lib\net30\RabbitMQ.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Serilog">
+      <HintPath>..\..\Solutions\packages\Serilog.1.3.24\lib\net45\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.FullNetFx">
+      <HintPath>..\..\Solutions\packages\Serilog.1.3.24\lib\net45\Serilog.FullNetFx.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\Solutions\packages\structuremap.3.0.3.116\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -101,6 +107,10 @@
     <Folder Include="Unit\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\Blocks\Source\Blocks.Core.LogEngines.SeriLog\Blocks.Core.LogEngines.SeriLog.csproj">
+      <Project>{55a23a30-a597-4a75-94c3-19941a5761c4}</Project>
+      <Name>Blocks.Core.LogEngines.SeriLog</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Modules\Blocks\Source\Blocks.Core\Blocks.Core.csproj">
       <Project>{2821349e-6f6f-4c57-a9d1-e5b96c418c76}</Project>
       <Name>Blocks.Core</Name>
