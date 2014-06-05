@@ -37,7 +37,7 @@ using Blocks.WindowsService.Jobs;
 using Blocks.WindowsService.Setup;
 using Microsoft.Practices.ServiceLocation;
 using NUnit.Framework;
-using PowerUps.MicroServices.PushoverFacade;
+using PowerUps.MicroServices.Core;
 using PowerUps.MicroServices.PushoverFacade.Jobs;
 using PowerUps.MicroServices.PushoverFacade.Setup;
 
@@ -67,7 +67,7 @@ namespace PowerUps.Test.MicroServices.PushoverFacade.Integration.Jobs
         [Explicit]
         public void ReveiceTests()
         {
-            var configuration = ServiceLocator.Current.GetInstance<IApplicationConfiguration<IPushoverFacadeConfiguration>>();
+            var configuration = ServiceLocator.Current.GetInstance<IApplicationConfiguration<IMicroServicesCoreConfiguration>>();
             configuration.Set(c => c.RabbitMqExchangeName, "PowerUps.Test.MicroServices.PushoverFacade");
             var exchangeName = new ExchangeName(configuration.Get(c => c.RabbitMqExchangeName));
 
