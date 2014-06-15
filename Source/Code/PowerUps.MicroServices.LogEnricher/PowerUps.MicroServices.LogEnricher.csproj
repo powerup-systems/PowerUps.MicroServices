@@ -99,6 +99,7 @@
     </None>
     <None Include="..\..\Scripts\PowerUps.MicroServices.Core.psm1">
       <Link>PowerUps.MicroServices.Core.psm1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="App.config" />
     <None Include="Deploy.ps1">
