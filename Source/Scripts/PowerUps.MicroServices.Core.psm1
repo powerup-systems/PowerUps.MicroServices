@@ -4,6 +4,12 @@ Import-Module $MyDir"\CiPsLib.TopShelf.psm1" -Force
 
 
 function PreDeploy-MicroServicesDefault {
+	param
+	(
+		[bool] $UseRabbitMQ = $false,
+		[bool] $UseMsSql = $false
+	)
+
     $ServiceName = $OctopusParameters["svc.name"]
     $ServiceExecutable = $OctopusParameters["Octopus.Action.Package.CustomInstallationDirectory"]+'\'+$OctopusParameters["app.exeName"]
     $AppConfigPath = $OctopusOriginalPackageDirectoryPath+'\'+$OctopusParameters["app.exeName"]+'.config'
@@ -13,7 +19,7 @@ function PreDeploy-MicroServicesDefault {
     Write-Host $ServiceExecutable
     Write-Host $AppConfigPath
 
-    Configure-MicroServicesDefault -ConfigPath $AppConfigPath
+    Configure-MicroServicesDefault -ConfigPath $AppConfigPath -UseRabbitMQ $UseRabbitMQ -UseMsSql $UseMsSql
 
     # Install service
     Uninstall-TopShelfService -ServiceName $ServiceName -ExePath $ServiceExecutable
@@ -56,22 +62,30 @@ function Deploy-MicroServicesDefault {
 function Configure-MicroServicesDefault {
     param
     (
-        [string] $ConfigPath
+        [string] $ConfigPath,
+		[bool] $UseRabbitMQ = $false,
+		[bool] $UseMsSql = $false
     )
 
     #Connection strings
-    XmlPoke $AppConfigPath "//*[local-name() = 'add' and @name='RabbitMqConnectionString']/@connectionString" $OctopusParameters["mq.connectionstring"]
-    XmlPoke $AppConfigPath "//*[local-name() = 'add' and @name='MsSqlConnectionString']/@connectionString" $OctopusParameters["sql.connectionstring"]
+	if ($UseRabbitMQ) {
+		XmlPoke $AppConfigPath "//*[local-name() = 'add' and @name='RabbitMqConnectionString']/@connectionString" $OctopusParameters["mq.connectionstring"]
+	}
+	if ($UseMsSql) {
+		XmlPoke $AppConfigPath "//*[local-name() = 'add' and @name='MsSqlConnectionString']/@connectionString" $OctopusParameters["sql.connectionstring"]
+	}
 
     # Application configuration
     XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IMicroServicesCoreConfiguration_ServiceName']/@value" $OctopusParameters["svc.name"]
     XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IMicroServicesCoreConfiguration_ServiceDescription']/@value" $OctopusParameters["svc.description"]
     XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IMicroServicesCoreConfiguration_Port']/@value" $OctopusParameters["conf.port"]
-    XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IMicroServicesCoreConfiguration_RabbitMqExchangeName']/@value" $OctopusParameters["mq.exchange"]
     XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IMicroServicesCoreConfiguration_LogLevel']/@value" $OctopusParameters["log.level"]
     XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IMicroServicesCoreConfiguration_ElasticSearchUrl']/@value" $OctopusParameters["es.url"]
     XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IMicroServicesCoreConfiguration_EnvName']/@value" $OctopusParameters["env.name"]
     XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IMicroServicesCoreConfiguration_AppName']/@value" $OctopusParameters["app.shortName"]
+	if ($UseRabbitMQ) {
+	    XmlPoke $AppConfigPath "//*[local-name() = 'add' and @key='IMicroServicesCoreConfiguration_RabbitMqExchangeName']/@value" $OctopusParameters["mq.exchange"]
+	}
 }
 
 
